@@ -30,3 +30,11 @@
 *.exe
 *.out
 *.app
+
+*.filters
+*.vcxproj
+*.user
+
+.vs/
+x64/
+myRPG/x64
