@@ -1,13 +1,33 @@
 #include <SFML/Graphics.hpp>
+#include <iostream>
+#include <string>
+#include "Player.h"
+#include <Windows.h>
+
 
 int main()
 {
-    sf::Vector2f mov(0.0f, 10.0f);
+    sf::ContextSettings settings;
+    settings.antialiasingLevel = 8;
+    
+    sf::RenderWindow window(sf::VideoMode(1000, 600), "myRPG", sf::Style::Default, settings);
 
-    sf::RenderWindow window(sf::VideoMode(1000, 600), "myRPG");
-    sf::RectangleShape rec(sf::Vector2f(10.0f, 5.0f));
-    rec.setPosition(sf::Vector2f(0.0f, 10.0f));
-    rec.setFillColor(sf::Color::Magenta);
+    Player* skeleton = new Player("Barnie");
+
+
+    //sf::Texture playerTexture;
+    //sf::Sprite playerSprite;
+
+    //if (playerTexture.loadFromFile("Assets\\Player\\Textures\\spritesheet.png"))
+    //{
+    //    std::cout << "Player image Loaded !!" << std::endl;
+    //    playerSprite.setTexture(playerTexture);
+    //    playerSprite.setTextureRect(sf::IntRect(256, 128, 64, 64));
+    //}
+    //else
+    //{
+    //    std::cout << "Failed to Load" << std::endl;
+    //}
 
     while (window.isOpen())
     {
@@ -17,19 +37,26 @@ int main()
             if (event.type == sf::Event::Closed)
                 window.close();
         }
-        if(mov.x < 990)
-        {
-            mov.x += 1.0f;
-        }
-        else
-        {
-            mov.y += 1.0f;
-        }
 
-        rec.setPosition(mov);
+        skeleton->reloadPosition();
+
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+            skeleton->move(UP);
+
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+            skeleton->move(LEFT);
+               
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+            skeleton->move(RIGHT);
+        
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+            skeleton->move(DOWN);
+
+
         window.clear();
-        window.draw(rec);
+        window.draw(skeleton->playerSprite);
         window.display();
+        Sleep(5);
     }
 
     return 0;
