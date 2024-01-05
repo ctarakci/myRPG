@@ -1,9 +1,10 @@
 #pragma once
 #include "definitions.h"
 
-class Player {
+class Goblin
+{
 public:
-    Player(std::string name);
+    Goblin(std::string name);
     void setPlayerStats();
     std::string getPlayerName();
     unsigned long getHealth();
@@ -11,6 +12,7 @@ public:
     void attack(sf::Sprite& target);
     void reloadPosition();
     void setPosition(sf::Vector2f position);
+
 
     sf::Sprite      playerSprite;
 private:
@@ -23,3 +25,4 @@ private:
     unsigned char   moveSpeed;
     unsigned char   countStep;
 };
+

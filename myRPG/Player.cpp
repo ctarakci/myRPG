@@ -9,7 +9,7 @@ Player::Player(std::string name)
 {
 	this->name = name;
 
-	if (playerTexture.loadFromFile("Assets\\Player\\Textures\\spritesheet.png"))
+	if (playerTexture.loadFromFile("Assets\\Player\\Textures\\spritesheetskeleton.png"))
 	{
 		std::cout << "-- Player : " << name << " assets loaded " << std::endl;
 
@@ -72,10 +72,10 @@ void Player::move(DIRECTION direction)
 			std::cout << "Wrong direction case : " << direction << std::endl;
 		}break;
 	}
-
+	std::cout << playerSprite.getGlobalBounds().left << " " << playerSprite.getGlobalBounds().top << " " << playerSprite.getGlobalBounds().height << " " << playerSprite.getGlobalBounds().width << " " << std::endl;
 }
 
-void Player::attack(Player& target)
+void Player::attack(sf::Sprite& target)
 {
 
 }
@@ -83,4 +83,11 @@ void Player::attack(Player& target)
 void Player::reloadPosition()
 {
 	position = playerSprite.getPosition();
+}
+
+void Player::setPosition(sf::Vector2f position)
+{
+	this->position = position;
+	this->playerSprite.setPosition(position);
+
 }

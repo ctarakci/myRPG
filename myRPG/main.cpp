@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 #include "Player.h"
+#include "Goblin.h"
 #include <Windows.h>
 
 
@@ -13,6 +14,10 @@ int main()
     sf::RenderWindow window(sf::VideoMode(1000, 600), "myRPG", sf::Style::Default, settings);
 
     Player* skeleton = new Player("Barnie");
+    Goblin* goblin = new Goblin("Hunica");
+    goblin->setPosition(sf::Vector2f(150, 200));
+    goblin->move(DOWN);
+
 
 
     //sf::Texture playerTexture;
@@ -55,6 +60,7 @@ int main()
 
         window.clear();
         window.draw(skeleton->playerSprite);
+        window.draw(goblin->playerSprite);
         window.display();
         Sleep(5);
     }
